@@ -11,19 +11,23 @@ class MortgagePayment:
         self.years = years
     
     def payments(self, principal):
-        monthly_rate = (1 + self.quoted_rate / 2) ** (1/6) - 1
-        n_months = self.years * 12
-        monthly = principal * (monthly_rate / (1-(1+monthly_rate) ** -n_months))
-        semi_monthly = monthly /2
-        bi_weekly = monthly * 12/26
-        weekly = monthly * 12/52
-        rapid_bi_weekly = monthly /2
-        rapid_weekly = monthly /4 
-    
-        return (round(monthly,2), round(semi_monthly, 2), 
-            round(bi_weekly, 2), round(weekly, 2),
-            round(rapid_bi_weekly, 2), round(rapid_weekly, 2))
+        j = self.quoted_rate  
 
+        def pay_for(f):
+            r = (1 + j/2) ** (2.0 / f) - 1
+            n = self.years * f
+            return principal * (r / (1 - (1 + r) ** (-n)))
+
+        monthly       = pay_for(12)
+        semi_monthly  = pay_for(24)
+        bi_weekly     = pay_for(26)
+        weekly        = pay_for(52)
+        rapid_bi_weekly = monthly / 2
+        rapid_weekly    = monthly / 4
+
+        return (round(monthly, 2), round(semi_monthly, 2),
+                round(bi_weekly, 2), round(weekly, 2),
+                round(rapid_bi_weekly, 2), round(rapid_weekly, 2))
 
 if __name__ == "__main__":
     principal = float(input("Enter mortgage principal: "))
