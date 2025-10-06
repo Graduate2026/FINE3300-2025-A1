@@ -1,7 +1,7 @@
 # FINE 3300 - Assignment 1 (Part 2)
-# Author: Dennis Jacob
+# Dennis Jacob
 # Description: Reads the latest USD/CAD rate from the Bank of Canada CSV
-#              and converts amounts between CAD and USD using user input.
+# and converts amounts between CAD and USD using user input.
 
 class ExchangeRates:
     def __init__(self, file_name):
@@ -16,7 +16,7 @@ class ExchangeRates:
         lines = f.readlines()
         f.close()
 
-        # header row (column names) and last data row (most recent)
+       
         header = lines[0].strip().split(",")
         last = lines[-1].strip().split(",")
 
@@ -31,7 +31,7 @@ class ExchangeRates:
             last[j] = last[j].strip()
             j = j + 1
 
-        # find the column index for "USD/CAD" in the header
+       
         usd_index = 0
         k = 0
         while k < len(header):

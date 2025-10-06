@@ -1,3 +1,8 @@
+# FINE 3300 Assignment 1 ( PART 1)
+# DENNIS JACOB
+# Description : the following function, with user inputs, calculates the different payment on different time frames for
+# a given mortgage, quoted annual rate and amortization period.
+
 import math
 
 class MortgagePayment:
